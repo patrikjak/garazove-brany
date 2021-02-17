@@ -1,0 +1,13 @@
+RewriteEngine on
+
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+
+RewriteCond %{HTTP_USER_AGENT} !(BlackBerry)
+
+RewriteCond %{HTTP_USER_AGENT} !(Windows\sNT\s5\.[12])
+
+RewriteCond %{HTTP_HOST} ^(www\.)?brany-garazove.sk
+
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L]
+
+ErrorDocument 404 https://brany-garazove.sk/404.php
